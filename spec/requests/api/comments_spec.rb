@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "POST /api/comments", type: require do
+RSpec.describe "POST /api/comments", type: :request do
   let!(:user) { create(:user) }
   let!(:credentials) { user.create_new_auth_token }
   let!(:headers) { { HTTP_ACCEPT: "application/json" }.merge!(credentials) }
@@ -8,7 +8,7 @@ RSpec.describe "POST /api/comments", type: require do
 
   describe "POST /api/comments" do
     before do
-      post "/api/comments",
+      post "/api/comments/",
            params: {
              comment: {
                article_id: article.id,

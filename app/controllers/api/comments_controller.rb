@@ -4,7 +4,7 @@ class Api::CommentsController < ApplicationController
   def create
     comment = current_user.comments.create(comments_params)
     if comment.persisted?
-      render json: { message: "succesfully saved" }
+      render json: { message: "succesfully saved" }, status: 201
     else
       console.log(error)
     end
@@ -13,6 +13,6 @@ class Api::CommentsController < ApplicationController
   private
 
   def comments_params
-    paramss.require(:comment).permit(:body, :article_id, :user_id)
+    params.require(:comment).permit(:body, :article_id, :user_id)
   end
 end
